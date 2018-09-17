@@ -305,7 +305,6 @@ int main(int argc, char** argv)
 	FileStorage storage("../BlobDetectionParameters.xml", FileStorage::READ);
 	FileNode node = storage["opencv_storage"];
 	params.read(node);
-	ostringstream os;
 
 	// This program requires a filename as the first command line parameter. Read the
 	// image from the specified file, if possible.
@@ -361,6 +360,7 @@ int main(int argc, char** argv)
 	for (KeyPoint k : keypoints)
 		cout << "(" << k.pt.x << "," << k.pt.y << ")" << endl;
 	drawKeypoints(image, keypoints, result, Scalar(0, 0, 255), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+	ostringstream os;
 	os << "Result: " << keypoints.size() << " keypoints.";
 	imshow(os.str(), result);
 	moveWindow(os.str(), 800, 0);
