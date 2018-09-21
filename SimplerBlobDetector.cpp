@@ -11,6 +11,7 @@
 // ------------------------------------------------------------------------------------------------
 
 #include <iostream>
+#include <cassert>
 
 #include <opencv2/core.hpp>
 #include <opencv2/core/types.hpp>
@@ -49,6 +50,9 @@ void onMouseClick(int event, int x, int y, int flags, void* userdata)
 {
 	if (event == CV_EVENT_LBUTTONDOWN)
 	{
+	    assert(userdata != nullptr);
+	    assert(x > 0 && y > 0 && x < ((cv::Mat *)userdata)->size().width && y < ((cv::Mat *)userdata)->size().height);
+
 		cv::Mat image(*(cv::Mat *)userdata);
 		int gr = image.at<uchar>(y, x);
 		cout << "Grayvalue = " << gr << endl;
